@@ -1,3 +1,4 @@
+using Discount.API.Extensions;
 using Discount.API.Repositories;
 using Microsoft.OpenApi.Models;
 
@@ -15,6 +16,9 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
 var app = builder.Build();
+
+// Database migration
+app.Services.MigrateDatabase<Program>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
